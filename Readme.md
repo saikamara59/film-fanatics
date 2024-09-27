@@ -8,10 +8,10 @@
 
 ## Attributions: 
 
-1. [MDN] https://developer.mozilla.org/en-US/
-2. [ChatGPT] https://chatgpt.com/
-3. [GeeksForGeeks] https://www.geeksforgeeks.org/
-4. [MongoDB] https://www.mongodb.com/
+1. [https://developer.mozilla.org/en-US/] MDN
+2. [https://chatgpt.com/] ChatGPT
+3. [https://www.geeksforgeeks.org/] GeeksForGeeks
+4. [https://www.mongodb.com/]  MongoDB
 
 ## Technologies used: 
 
