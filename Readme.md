@@ -1,5 +1,7 @@
 
-# Screenshot/Logo: A screenshot of your app or a logo.
+# Screenshot/Logo: 
+(image.png)
+
 
 
 # Your app’s name: FilmFanatics - a platform where users can rate and write reviews for movies.
