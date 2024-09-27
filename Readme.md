@@ -2,8 +2,6 @@
 # Screenshot/Logo: 
 (image.png)
 
-
-
 # Your app’s name: FilmFanatics - a platform where users can rate and write reviews for movies.
 
 ## Getting started: 
