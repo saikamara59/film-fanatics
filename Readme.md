@@ -1,5 +1,7 @@
 
 
+
+
 # FilmFanatics - a platform where users can rate and write reviews for movies.
 
 ## Getting started: (deployment link)
@@ -13,7 +15,7 @@
 
 ## Technologies used: 
 
-1. Express
+1. Express 
 2. Mongoose
 3. MongoDB
 4. EJS
