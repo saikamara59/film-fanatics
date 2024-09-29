@@ -1,10 +1,8 @@
 
-# Screenshot/Logo: A screenshot of your app or a logo.
 
+# FilmFanatics - a platform where users can rate and write reviews for movies.
 
-# Your app’s name: FilmFanatics - a platform where users can rate and write reviews for movies.
-
-## Getting started: 
+## Getting started: (deployment link)
 
 ## Attributions: 
 
@@ -30,3 +28,4 @@
 1. Apply Tailwind to enhance user experince and visual details.
 2. Add Authentication to validate users/credentials
 3. Add like/dislike button functionality
+ 
