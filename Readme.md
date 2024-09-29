@@ -1,5 +1,5 @@
 
-
+![Film Fanatics Logo](/public/images/logo.png)
 
 
 # FilmFanatics - a platform where users can rate and write reviews for movies.

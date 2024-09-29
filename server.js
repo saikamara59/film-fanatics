@@ -9,7 +9,7 @@ const app = express();
 
 dotenv.config();
 
-const PORT = process.envPORT || 4000
+const PORT = process.envPORT || 4000 
 
 
 // mongoose connection event listener
