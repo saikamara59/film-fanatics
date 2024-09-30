@@ -7,3 +7,8 @@
 - Allow users to create, read, update, and delete movies reviews.
 - Provide a user-friendly based interface for exploring movies by the genre, ratings and popularity.
 - Ensure smother user registerations and login.
+
+## Features
+
+1. user authentication: Sign Up: users can create account using their email and password
+   -Login and Logout: Users can log in and access features like posting reviews and managing profiles
