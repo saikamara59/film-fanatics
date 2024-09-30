@@ -11,6 +11,14 @@ const movieSchema = new mongoose.Schema({
     coverPhotoUrl: {type:String,required:true}
 })
 
-const Movie = mongoose.model('Movie', movieSchema)
+const userReviewSchema = new mongoose.Schema({
+    userReviewName: { type: String, required: true},
+    reviews: {type: String, required: true},
+    // likes and dislike should be a string or no ?
+})
 
-module.exports = movieSchema
+
+
+const Movie = mongoose.model('Movie', movieSchema,userReviewSchema)
+
+module.exports = movieSchema;
