@@ -10,5 +10,5 @@
 
 ## Features
 
-1. user authentication: Sign Up: users can create account using their email and password
-   -Login and Logout: Users can log in and access features like posting reviews and managing profiles
+1. User Authentication: Sign Up: users can create account using their email and password
+   -Login and Logout: Users can log in and access features like posting reviews and managing profiles.
