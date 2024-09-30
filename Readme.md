@@ -1,6 +1,7 @@
 ![Film Fanatics Logo](/public/images/logo.png)
 
-[<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVLZVW6Dw=/?moveToViewport=-2295,-455,2361,1343&embedId=447418331592" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>] ERD Link
+![Screenshot 2024-09-30 195115](https://github.com/user-attachments/assets/8d258b17-28b7-4bff-a415-f56659afe3ff)
+
 
 # FilmFanatics - a platform where users can rate and write reviews for movies.
 
