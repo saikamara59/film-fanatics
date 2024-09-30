@@ -12,7 +12,7 @@ const path = require('path')
 dotenv.config();
 const app = express();
 app.set("view engine", "ejs");
-
+ 
 
 const PORT = process.env.PORT || 4000 
 
@@ -37,7 +37,7 @@ mongoose.connection.on("error", (err) => {
 
 app.get('/', (req, res) => {
   res.render('index')
-}) 
+})  
  
 
 
