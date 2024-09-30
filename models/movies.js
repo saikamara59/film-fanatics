@@ -20,8 +20,8 @@ const userReviewSchema = new mongoose.Schema({
     userId: {type: String, required: true}
 });
 
-
+const UserReview = mongoose.model("UserReview",userReviewSchema)
 
 const Movie = mongoose.model('Movie', movieSchema)
 
-module.exports = movieSchema;
+module.exports = {movieSchema,UserReview};
