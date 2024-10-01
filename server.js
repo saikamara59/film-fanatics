@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require('path')
-
+const movieController = require("./controllers/moviesControllers");
 
 
 
@@ -38,6 +38,9 @@ mongoose.connection.on("error", (err) => {
 app.get('/', (req, res) => {
   res.render('index')
 })  
+
+
+app.get("/movies",movieController.getAllMovies);
  
 
 
