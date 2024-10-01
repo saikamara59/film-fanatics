@@ -1,7 +1,7 @@
 {
-  "name": "film-fanatics-",
+  "name": "film-fanatics",
   "version": "1.0.0",
-  "description": "1. [https://developer.mozilla.org/en-US/] MDN\r 2. [https://chatgpt.com/] ChatGPT\r 3. [https://www.geeksforgeeks.org/] GeeksForGeeks\r 4. [https://www.mongodb.com/]  MongoDB",
+  "description": "![Film Fanatics Logo](/public/images/logo.png)",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +16,7 @@
     "express": "^4.21.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.7.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   }
 }

@@ -5,9 +5,6 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require('path')
 
-
-
-
 // App configs
 dotenv.config();
 const app = express();
