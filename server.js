@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // mongoose connection 
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB.`);
@@ -33,7 +33,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('new')
 })  
  
 
