@@ -6,7 +6,7 @@
 
 - Allow users to create, read, update, and delete movies reviews.
 - Provide a user-friendly based interface for exploring movies by the genre, ratings and popularity.
-- Ensure smother user registerations and login.
+- Ensure smoother user registerations and login.
 
 ## Features
 

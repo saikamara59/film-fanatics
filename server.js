@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require('path')
+const movieController = require("./controllers/moviesControllers")
+
 
 // App configs
 dotenv.config();
@@ -35,6 +37,9 @@ mongoose.connection.on("error", (err) => {
 app.get('/', (req, res) => {
   res.render('new')
 })  
+
+
+app.get("/movies",movieController.getAllMovies);
  
 
 
