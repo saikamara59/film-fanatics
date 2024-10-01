@@ -4,12 +4,8 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require('path')
-<<<<<<< HEAD
-const movieController = require("./controllers/moviesControllers");
+const movieController = require("./controllers/moviesControllers")
 
-
-=======
->>>>>>> 93ea442e6d13f7ed2c65757f30982dcaaf1ea9aa
 
 // App configs
 dotenv.config();
