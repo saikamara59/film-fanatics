@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 
 app.get("/movies",movieController.getAllMovies);
  
-
+app.get("/movies/:id",movieController.getOneMovie)
 
 
 app.listen(PORT, () => {

@@ -27,4 +27,4 @@ const UserReview = mongoose.model("UserReview",userReviewSchema)
 
 const Movie = mongoose.model('Movie', movieSchema)
 
-module.exports = {movieSchema, UserReview};
+module.exports = {Movie, UserReview};

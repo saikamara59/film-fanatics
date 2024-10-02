@@ -12,12 +12,22 @@ const getAllMovies = async (req,res) => {
 };
 
 
-
+const getOneMovie = async (req,res) => {
+    try {
+        const foundMovie = await movie.findbyId(req.params.id);
+        const contextMovie = { Movies:foundMovie};
+        res.render("movies/show",contextMovie)
+    }catch (err) {
+        console.log(err);
+        res.redirect("/");
+    }
+}
 
 
 
 
 
 module.exports = {
-    getAllMovies
+    getAllMovies,
+    getOneMovie,
 }
