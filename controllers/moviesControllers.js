@@ -1,4 +1,4 @@
-const movie = require("../models/movies");
+const Movie = require("../models/movies");
 
 
 const getAllMovies = async (req,res) => {
@@ -26,7 +26,7 @@ const getOneMovie = async (req,res) => {
 
 const createAReview = async (req,res) => {
     req.body.reviews = req.body.reviews === "on";
-    try{
+    try {
         await movie.create(req.body);
         res.redirect("/movies");
     } catch (err) {
@@ -48,5 +48,5 @@ module.exports = {
     getAllMovies,
     getOneMovie,
     createAReview,
-    editAReview
+    editAReview,
 }
