@@ -34,8 +34,19 @@ const createAReview = async (req,res) => {
     }
 };
 
+const editAReview = async (req,res) => {
+    try {
+        const movie = await movie.findbyIdAndUpdate(req.params.movieId);
+    } catch (err) {
+        console.log(err) 
+        res.redirect(`/movies/${req.params.id}`);
+    }
+}
+
 
 module.exports = {
     getAllMovies,
     getOneMovie,
+    createAReview,
+    editAReview
 }

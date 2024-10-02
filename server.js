@@ -44,6 +44,7 @@ app.get("/movies",movieController.getAllMovies);
 app.get("/movies/:id",movieController.getOneMovie)
 
 
+app.put("movies/:id",movieController.editAReview);
 
 
 app.post("/movies",movieController.createAReview)
