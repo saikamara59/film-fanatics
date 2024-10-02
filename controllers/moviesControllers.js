@@ -24,7 +24,15 @@ const getOneMovie = async (req,res) => {
 }
 
 
-
+const createAReview = async (req,res) => {
+    req.body.reviews = req.body.reviews === "on";
+    try{
+        await movie.create(req.body);
+        res.redirect("/movies");
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+};
 
 
 module.exports = {

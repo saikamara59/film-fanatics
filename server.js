@@ -44,6 +44,10 @@ app.get("/movies",movieController.getAllMovies);
 app.get("/movies/:id",movieController.getOneMovie)
 
 
+
+
+app.post("/movies",movieController.createAReview)
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 })
