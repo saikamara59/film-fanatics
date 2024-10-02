@@ -36,6 +36,8 @@ mongoose.connection.on("error", (err) => {
 
 
 const Movie = require("./models/movies")
+// const UserReview = require('../models/UserReview');
+
 
 // Routes
 app.get('/', (req, res) => {

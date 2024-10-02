@@ -1,9 +1,9 @@
 const Movie = require("../models/movies");
-
+// const UserReview = require("../models/UserReview")
 
 const getAllMovies = async (req,res) => {
     try {
-        const allMovies = await movie.find();
+        const allMovies = await Movie.find();
         res.render("movies/index", {movies: allMovies, message: "Hello World"});
     } catch (err) {
         console.log(err);
@@ -14,8 +14,8 @@ const getAllMovies = async (req,res) => {
 
 const getOneMovie = async (req,res) => {
     try {
-        const foundMovie = await movie.findbyId(req.params.id);
-        const contextMovie = { Movies:foundMovie};
+        const foundMovie = await Movie.findById(req.params.id);
+        const contextMovie = { movie:foundMovie};
         res.render("movies/show",contextMovie)
     }catch (err) {
         console.log(err);
@@ -24,19 +24,20 @@ const getOneMovie = async (req,res) => {
 }
 
 
-const createAReview = async (req,res) => {
+const createAReview = async (req, res) => {
     req.body.reviews = req.body.reviews === "on";
     try {
-        await movie.create(req.body);
+        await userId.create(req.body);
         res.redirect("/movies");
     } catch (err) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({ error: err.message });
     }
 };
 
+
 const editAReview = async (req,res) => {
     try {
-        const movie = await movie.findbyIdAndUpdate(req.params.movieId);
+        const Movie = await Movie.findByIdAndUpdate(req.params.movieId);
     } catch (err) {
         console.log(err) 
         res.redirect(`/movies/${req.params.id}`);
