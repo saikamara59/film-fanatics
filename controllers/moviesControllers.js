@@ -31,9 +31,10 @@ const createAReview = async (req, res) => {
         await models.UserReview.create(req.body);
         res.redirect("/movies");
     } catch (err) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({ error: err.message });
     }
 };
+
 
 const editAReview = async (req,res) => {
     try {
