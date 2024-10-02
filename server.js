@@ -6,12 +6,12 @@ const morgan = require("morgan");
 const path = require('path')
 const movieController = require("./controllers/moviesControllers")
 
-
+ 
 // App configs
 dotenv.config();
 const app = express();
 app.set("view engine", "ejs");
- 
+  
 
 const PORT = process.env.PORT || 4000 
 
@@ -43,7 +43,9 @@ app.get('/', (req, res) => {
 })  
 
 
-app.get("/movies",movieController.getAllMovies);
+app.get("/movies", (req, res) => {
+  res.send('Success')
+});
  
 app.get("/movies/:id",movieController.getOneMovie)
 
