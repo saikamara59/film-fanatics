@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Welcome to Film Fanatics</h1>
-
+    <hr>
     <% moviesDB.forEach(movie => { %>
         <h2><%=movie.title%></h2>
         <img width="370px" src="<%=movie.coverUrl%>" alt="">
@@ -17,11 +17,10 @@
         <p>Director: <%=movie.director%></p>
         <p>Genre: <%=movie.genre%></p>
         <p>Description: <%=movie.description%></p>
-        
-
-        <!-- <a href="/movies/<%= movie._id %>">Write a review for this movie</a> -->
+        <a href="/movies/<%= movie._id%>">See more</a>
         <hr>
-    <%})%>
+        <%})%>
 
+        
 </body>
 </html> 

@@ -1,3 +1,5 @@
+const models = require('../models/movies')
+
 const movies = [
     {
       id: 1,
