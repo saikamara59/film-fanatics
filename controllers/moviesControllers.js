@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const models = require("../models/movies");
 const moviesDB = require('../DB/moviesDB')
 
+
 const getAllMovies = async (req,res) => {
     try {
         const allMovies = await models.UserReview.find();
@@ -35,9 +36,9 @@ const addNewMovie = async (req, res) => {
 }
 
 
-const createAReview = async (req, res) => {
+const createMovie = async (req, res) => {
     try {
-        const { movieName, releaseYear, genre, stillInTheaters, description, coverPhotoUrl, userName, reviews, action } = req.body;
+        const { movieName, releaseYear, genre, description, coverPhotoUrl} = req.body;
 
         const newMovie = await models.Movie.create({
             movieName,
@@ -45,14 +46,14 @@ const createAReview = async (req, res) => {
             genre,
             description,
             coverPhotoUrl,
-            userReviews: [
-                {
-                    userName,
-                    reviews,
-                    likes: action === 'like' ? 1 : 0,
-                    dislikes: action === 'dislike' ? 1 : 0
-                }
-            ]
+            // userReviews: [
+            //     {
+            //         userName,
+            //         reviews,
+            //         likes: action === 'like' ? 1 : 0,
+            //         dislikes: action === 'dislike' ? 1 : 0
+            //     }
+            // ]
         });
 
         res.redirect("/movies/new");
@@ -61,7 +62,18 @@ const createAReview = async (req, res) => {
     }
 };
 
-
+const seedMovies = async (req, res) => {
+    try {
+        const clearMovies = await models.Movie.deleteMany()
+        console.log(clearMovies)
+        const seededData = await models.Movie.create(moviesDB)
+        res.send('Database sedded')
+        // console.log(seededData)
+    } catch (err) {
+        res.send('Error here')
+        console.log(err)
+    }
+}
 
 const editAReview = async (req,res) => {
     try {
@@ -90,8 +102,9 @@ const deleteAReview = async (req,res) => {
 module.exports = {
     getAllMovies,
     getOneMovie,
-    createAReview,
+    createMovie,
     editAReview,
     deleteAReview,
-    addNewMovie
+    addNewMovie,
+    seedMovies
 }
