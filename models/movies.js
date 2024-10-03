@@ -13,11 +13,11 @@ const userReviewSchema = new mongoose.Schema({
 const movieSchema = new mongoose.Schema({
     movieName : { type: String},
     releaseYear:{type: Number},
-    genre: {type: String},
+    genre: { type: String },
+    director: {type: String},
     stillInTheaters: {type: Boolean},
     description: {type: String},
     coverPhotoUrl: {type:String},
-    userId: { type: String },
     userReviews: [userReviewSchema]
 });
 
