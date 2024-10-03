@@ -9,7 +9,7 @@
     <%- include('../partials/nav') %>
     <h1>Welcome to Film Fanatics</h1>
     <hr />
-    <% moviesDB.forEach(movie => { %>
+    <% movies.forEach(movie => { %>
     <h2><%=movie.movieName%></h2>
     <img width="370px" src="<%=movie.coverUrl%>" alt="" />
     <p>Release Year: <%=movie.releaseYear%></p>

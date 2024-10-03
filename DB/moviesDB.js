@@ -3,7 +3,7 @@ const models = require('../models/movies')
 const movies = [
     {
       id: 1,
-      title: "Inception",
+      movieName: "Inception",
       year: 2010,
       genre: "Sci-Fi",
       rating: 8.8,
@@ -14,7 +14,7 @@ const movies = [
     },
     {
       id: 2,
-      title: "The Godfather",
+      movieName: "The Godfather",
       year: 1972,
       genre: "Crime, Drama",
       rating: 9.2,
@@ -25,7 +25,7 @@ const movies = [
     },
     {
       id: 3,
-      title: "Parasite",
+      movieName: "Parasite",
       year: 2019,
       genre: "Thriller, Drama",
       rating: 8.5,
@@ -36,7 +36,7 @@ const movies = [
     },
     {
       id: 4,
-      title: "The Dark Knight",
+      movieName: "The Dark Knight",
       year: 2008,
       genre: "Action, Crime",
       rating: 9.0,
@@ -47,7 +47,7 @@ const movies = [
     },
     {
       id: 5,
-      title: "Pulp Fiction",
+      movieName: "Pulp Fiction",
       year: 1994,
       genre: "Crime, Drama",
       rating: 8.9,

@@ -5,8 +5,8 @@ const moviesDB = require('../DB/moviesDB')
 
 const getAllMovies = async (req,res) => {
     try {
-        const allMovies = await models.UserReview.find();
-        res.render("movies/index", {movies: allMovies, moviesDB: moviesDB, message: "Hello World"});
+        const allMovies = await models.Movie.find();
+        res.render("movies/index", {movies: allMovies, message: "Hello World"});
     } catch (err) {
         console.log(err);
         res.redirect("/");
@@ -17,7 +17,7 @@ const getAllMovies = async (req,res) => {
 const getOneMovie = async (req,res) => {
     try {
         const foundMovie = await models.Movie.findById(req.params.id);
-        res.render(`movies/show`, { Movies: foundMovie, moviesDB: moviesDB })
+        res.render(`movies/show`, { movie: foundMovie })
 
     }catch (err) {
         console.log(err);
@@ -46,14 +46,7 @@ const createMovie = async (req, res) => {
             genre,
             description,
             coverPhotoUrl,
-            // userReviews: [
-            //     {
-            //         userName,
-            //         reviews,
-            //         likes: action === 'like' ? 1 : 0,
-            //         dislikes: action === 'dislike' ? 1 : 0
-            //     }
-            // ]
+
         });
 
         res.redirect("/movies/new");
