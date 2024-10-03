@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const models = require("../models/movies");
-
+const moviesDB = require('../DB/moviesDB')
 
 const getAllMovies = async (req,res) => {
     try {
         const allMovies = await models.UserReview.find();
-        res.render("movies/index", {movies: allMovies, message: "Hello World"});
+        res.render("movies/index", {movies: allMovies, moviesDB: moviesDB, message: "Hello World"});
     } catch (err) {
         console.log(err);
         res.redirect("/");

@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -11,9 +10,16 @@
 <body>
     <h1>Welcome to Film Fanatics</h1>
 
-    <% movies.forEach(movie => { %>
-        <h3><%=movie.reviews%></h3>
-        <a href="/movies/new/<%= movie._id %>">Write a review for this movie</a>
+    <% moviesDB.forEach(movie => { %>
+        <h2><%=movie.title%></h2>
+        <img width="370px" src="<%=movie.coverUrl%>" alt="">
+        <p>Release Year: <%=movie.year%></p>
+        <p>Director: <%=movie.director%></p>
+        <p>Genre: <%=movie.genre%></p>
+        <p>Description: <%=movie.description%></p>
+        
+
+        <!-- <a href="/movies/<%= movie._id %>">Write a review for this movie</a> -->
         <hr>
     <%})%>
 
