@@ -17,10 +17,19 @@ const getOneMovie = async (req,res) => {
     try {
         const foundMovie = await models.Movie.findById(req.params.id);
         res.render(`movies/show`, { Movies: foundMovie, moviesDB: moviesDB })
-        
+
     }catch (err) {
         console.log(err);
         res.redirect("/");
+    }
+}
+
+const addNewMovie = async (req, res) => {
+    try {
+        res.render('movies/new')
+    } catch(err) {
+        console.log(err)
+        res.redirect('/')
     }
 }
 
@@ -29,7 +38,8 @@ const createAReview = async (req, res) => {
     req.body.reviews = req.body.reviews === "on";
     try {
         await models.UserReview.create(req.body);
-        res.redirect("/movies");
+        await models.Movie.create(req.body)
+        res.redirect("/movies/new");
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -66,4 +76,5 @@ module.exports = {
     createAReview,
     editAReview,
     deleteAReview,
+    addNewMovie
 }
