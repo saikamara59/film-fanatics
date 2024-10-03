@@ -10,12 +10,13 @@
     <section>
       <h2>Movie Name:<%= movie.movieName %></h2>
       <h2>Genre:<%= movie.genre %></h2>
+      <h2>Description: <%= movie.description %></h2>
+      <h2>Movie Poster:<img src="<%= movie.coverPhotoUrl %>" alt="" /></h2>
       <% if (movie.stillinTheaters) { %>
       <p>This movie is still in theaters</p>
       <% } else { %>
       <p>This movie is no longer in theaters</p>
       <% } %>
     </section>
-    <section><% if (movie.reviews)%></section>
   </body>
 </html>
