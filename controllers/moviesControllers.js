@@ -4,7 +4,7 @@ const models = require("../models/movies");
 
 const getAllMovies = async (req,res) => {
     try {
-        const allMovies = await models.Movie.find();
+        const allMovies = await models.UserReview.find();
         res.render("movies/index", {movies: allMovies, message: "Hello World"});
     } catch (err) {
         console.log(err);

@@ -40,14 +40,12 @@ const Movie = require("./models/movies")
 
 
 // Routes
-app.get('/', (req, res) => {
-  res.render('movies/new')
-})  
+app.get('/', movieController.getAllMovies)  
 
 
-app.get("/movies", (req, res) => {
-  res.send('Success')
-});
+ 
+
+
  
 app.get("/movies/:id",movieController.getOneMovie)
 
