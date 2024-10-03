@@ -16,7 +16,7 @@ const getAllMovies = async (req,res) => {
 const getOneMovie = async (req,res) => {
     try {
         const foundMovie = await models.Movie.findById(req.params.id);
-        res.render(`movies/show`, { Movies: foundMovie, moviesDB: moviesDB })
+        res.render(`movies/show`, { movie: foundMovie, moviesDB: moviesDB })
         
     }catch (err) {
         console.log(err);

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 
 const userReviewSchema = new mongoose.Schema({
+    // reviewerName: {type:String, required: true},
     reviews: {type: String, required: true},
     likes: { type: Number, default: 0},
     dislikes:{type: Number, default: 0},

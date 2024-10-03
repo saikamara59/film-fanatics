@@ -42,7 +42,7 @@ const Movie = require("./models/movies")
 app.get('/', movieController.getAllMovies)  
 
 
-app.get('/movies/new', (req, res) => {
+app.get('/movies', (req, res) => {
   res.render('movies/new')
 })
 
