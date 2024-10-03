@@ -44,6 +44,7 @@ app.get('/', movieController.getAllMovies)
 
 app.get('/movies/new', movieController.addNewMovie)
 
+app.get('/movies/seed', movieController.seedMovies)
 
  
 app.get("/movies/:id",movieController.getOneMovie)
@@ -52,7 +53,7 @@ app.get("/movies/:id",movieController.getOneMovie)
 app.put("movies/:id",movieController.editAReview);
 
 
-app.post("/movies",movieController.createAReview)
+app.post("/movies",movieController.createMovie)
 
 app.delete("movies/:id",movieController.deleteAReview)
 
