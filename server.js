@@ -54,6 +54,9 @@ app.put("movies/:id",movieController.editAReview);
 
 app.post("/movies",movieController.createAReview)
 
+app.delete("movies/:id",movieController.deleteAReview)
+
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 })
