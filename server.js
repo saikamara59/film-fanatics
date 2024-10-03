@@ -3,8 +3,8 @@ const dotenv = require("dotenv")
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
-const path = require('path')
-const movieController = require("./controllers/moviesControllers")
+const path = require('path');
+const movieController = require("./controllers/moviesControllers");
 
  
 // App configs
