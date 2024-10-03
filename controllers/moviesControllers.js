@@ -24,6 +24,7 @@ const getOneMovie = async (req,res) => {
     }
 }
 
+
 const addNewMovie = async (req, res) => {
     try {
         res.render('movies/new')
@@ -36,19 +37,24 @@ const addNewMovie = async (req, res) => {
 
 const createAReview = async (req, res) => {
     try {
-        const { movieName, userName, reviews, action } = req.body;
-        const movie = await models.Movie.findOne({ movieName });
-        if (!movie) {
-            return res.status(404).json({ error: "Movie not found" });
-        }
-        const newReview = {
-            userName,
-            reviews,
-            likes: action === 'like' ? 1 : 0,
-            dislikes: action === 'dislike' ? 1 : 0
-        };
-        movie.userReviews.push(newReview);
-        await movie.save();
+        const { movieName, releaseYear, genre, stillInTheaters, description, coverPhotoUrl, userName, reviews, action } = req.body;
+
+        const newMovie = await models.Movie.create({
+            movieName,
+            releaseYear,
+            genre,
+            description,
+            coverPhotoUrl,
+            userReviews: [
+                {
+                    userName,
+                    reviews,
+                    likes: action === 'like' ? 1 : 0,
+                    dislikes: action === 'dislike' ? 1 : 0
+                }
+            ]
+        });
+
         res.redirect("/movies/new");
     } catch (err) {
         res.status(400).json({ error: err.message });
