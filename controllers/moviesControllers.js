@@ -46,6 +46,17 @@ const editAReview = async (req,res) => {
 }
 
 
+const deleteAReview = async (req,res) => {
+    try{
+        await models.UserReview.findByIdAndDelete(req.params.id);
+        console.log(deletedReviews,"response from db after deleting")
+        res.redirect("/movies");
+    } catch (err) {
+        console.log(err);
+        res.redirect(`/`)
+    }
+}
+
 
 
 
@@ -54,4 +65,5 @@ module.exports = {
     getOneMovie,
     createAReview,
     editAReview,
+    deleteAReview,
 }
