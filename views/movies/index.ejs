@@ -7,10 +7,12 @@
 </head>
 <body>
     <h1>Welcome to Film Fanatics</h1>
+
     <% movies.forEach(movie => { %>
         <h3><%=movie.reviews%></h3>
         <a href="/movies/new/<%= movie._id %>">Write a review for this movie</a>
         <hr>
     <%})%>
+    
 </body>
 </html> 
