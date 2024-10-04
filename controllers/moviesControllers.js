@@ -49,7 +49,7 @@ const createMovie = async (req, res) => {
 
         });
 
-        res.redirect("/movies/new");
+        res.redirect(`/movies`);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
