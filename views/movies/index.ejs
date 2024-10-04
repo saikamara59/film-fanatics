@@ -4,18 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=k, initial-scale=1.0" />
     <title>Film Fanatics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="public/main.css" />
   </head>
-  <body>
+  <body class="bg-red-300 min-h-screen">
     <%- include('../partials/nav') %>
-    <h1>Welcome to Film Fanatics</h1>
+    <h1 class="text-center text-4xl underline">Welcome to Film Fanatics</h1>
     <hr />
     <% movies.forEach(movie => { %>
-    <h2><%=movie.movieName%></h2>
-    <img width="370px" src="<%=movie.coverPhotoUrl%>" alt="" />
-    <p>Release Year: <%=movie.releaseYear%></p>
-    <p>Director: <%=movie.director%></p>
-    <p>Genre: <%=movie.genre%></p>
-    <p>Description: <%=movie.description%></p>
+    <h2 class="text-black animate-pulse p-2"><%=movie.movieName%></h2>
+    <img
+      class="flex-auto w-65 h-65 md:h-48 lg:h-50 object cover"
+      src="<%=movie.coverPhotoUrl%>"
+      alt=""
+    />
+    <p class="p-2 text-purple-600">Release Year: <%=movie.releaseYear%></p>
+    <p class="text-purple-600 p-2">Director: <%=movie.director%></p>
+    <p class="text-purple-600 p-2">Genre: <%=movie.genre%></p>
+    <p class="text-purple-600 font-serif p-2">
+      Description: <%=movie.description%>
+    </p>
     <a href="/movies/<%= movie._id%>">See more</a>
     <hr />
     <%})%>
