@@ -49,11 +49,31 @@ const createMovie = async (req, res) => {
 
         });
 
-        res.redirect(`/movies`);
+        res.redirect(`/`);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
+
+
+const createReview = async (req, res) => {
+    try {
+        // const movie = await models.Movie.findById(req.params.id)
+        // movie.userReviews.push(req.body)
+        res.redirect(`/`);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
+const addReview = async (req, res) => {
+    const movie = await models.Movie.findById(req.params.id)
+    movie.userReviews.push(req.body)
+    
+    console.log(movie.userReviews)
+    res.render('movies/review')
+}
+
 
 const seedMovies = async (req, res) => {
     try {
@@ -67,6 +87,7 @@ const seedMovies = async (req, res) => {
         console.log(err)
     }
 }
+
 
 const editAReview = async (req,res) => {
     try {
@@ -99,5 +120,7 @@ module.exports = {
     editAReview,
     deleteAReview,
     addNewMovie,
-    seedMovies
+    seedMovies,
+    createReview,
+    addReview
 }

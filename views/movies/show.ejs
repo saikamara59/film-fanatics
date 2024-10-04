@@ -17,21 +17,10 @@
       <% } else { %>
       <p>This movie is no longer in theaters</p>
       <% } %>
-      <form action="/movies" method="POST">
-        <h2>Add your review</h2>
+      
+      <hr>
 
-        <div>
-          <label for="userName">User Name: </label>
-          <input type="text" name="userName" id="userName" />
-        </div>
-
-        <div>
-          <label for="reviews"></label>
-          <textarea id="reviews" name="reviews" maxlength="1500"></textarea>
-        </div>
-
-        <button type="submit">SUBMIT</button>
-      </form>
+      <a href="/movies/review/<%=movie._id%>">Add a review for this movie</a>
     </section>
   </body>
 </html>
