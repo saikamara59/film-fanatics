@@ -26,54 +26,25 @@ const getOneMovie = async (req,res) => {
 }
 
 
-const addNewMovie = async (req, res) => {
-    try {
-        res.render('movies/new')
-    } catch(err) {
-        console.log(err)
-        res.redirect('/')
-    }
-}
-
-
-const createMovie = async (req, res) => {
-    try {
-        const { movieName, releaseYear, genre, description, coverPhotoUrl} = req.body;
-
-        const newMovie = await models.Movie.create({
-            movieName,
-            releaseYear,
-            genre,
-            description,
-            coverPhotoUrl,
-
-        });
-
-        res.redirect(`/`);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-};
-
 
 const createReview = async (req, res) => {
     try {
-        // const movie = await models.Movie.findById(req.params.id)
-        // movie.userReviews.push(req.body)
-        res.redirect(`/`);
+        const movie = await models.Movie.findById(req.params.id)
+        movie.userReviews.push(req.body)
+        await movie.save()
+        res.redirect(`/movies/${req.params.id}`);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
 
 const addReview = async (req, res) => {
-    const movie = await models.Movie.findById(req.params.id)
-    movie.userReviews.push(req.body)
-    
-    console.log(movie.userReviews)
-    res.render('movies/review')
+    const movieId = req.params.id
+    res.render('movies/review', {movieId})
 }
 
+
+2
 
 const seedMovies = async (req, res) => {
     try {
@@ -81,7 +52,6 @@ const seedMovies = async (req, res) => {
         console.log(clearMovies)
         const seededData = await models.Movie.create(moviesDB)
         res.send('Database sedded')
-        // console.log(seededData)
     } catch (err) {
         res.send('Error here')
         console.log(err)
@@ -116,10 +86,8 @@ const deleteAReview = async (req,res) => {
 module.exports = {
     getAllMovies,
     getOneMovie,
-    createMovie,
     editAReview,
     deleteAReview,
-    addNewMovie,
     seedMovies,
     createReview,
     addReview

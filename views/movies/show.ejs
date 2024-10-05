@@ -17,6 +17,14 @@
       <% } else { %>
       <p>This movie is no longer in theaters</p>
       <% } %>
+      <h2>Reviews</h2>
+       <% movie.userReviews.forEach(review => { %>
+        <hr>
+          <p><%=review.reviews %></p>
+          <p>written by: <%=review.userName%></p>
+        <hr>
+       <%}) %>
+
       
       <hr>
 
