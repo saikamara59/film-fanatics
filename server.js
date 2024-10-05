@@ -41,7 +41,7 @@ const Movie = require("./models/movies")
 // Routes
 app.get('/', movieController.getAllMovies)  
 
-app.get('/movies/new', movieController.addNewMovie)
+// app.get('/movies/new', movieController.addNewMovie)
 
 app.get('/movies/seed', movieController.seedMovies)
 
@@ -51,11 +51,11 @@ app.get("/movies/:id/review/new", movieController.addReview)
 
 app.post("/movies/:id/review", movieController.createReview)
 
-app.post("/movies",movieController.createMovie)
+// app.post("/movies",movieController.createMovie)
 
 app.put("movies/:id",movieController.editAReview);
 
-app.post("/movies", movieController.createMovie)
+// app.post("/movies", movieController.createMovie)
 
 
 // app.delete("movies/:id/review/:reviewId",movieController.deleteAReview)

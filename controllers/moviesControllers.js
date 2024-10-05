@@ -28,35 +28,6 @@ const getOneMovie = async (req,res) => {
 }
 
 
-const addNewMovie = async (req, res) => {
-    try {
-        res.render('movies/new')
-    } catch(err) {
-        console.log(err)
-        res.redirect('/')
-    }
-}
-
-
-const createMovie = async (req, res) => {
-    try {
-        const { movieName, releaseYear, genre, description, coverPhotoUrl} = req.body;
-
-        const newMovie = await models.Movie.create({
-            movieName,
-            releaseYear,
-            genre,
-            description,
-            coverPhotoUrl,
-
-        });
-
-        res.redirect(`/`);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-};
-
 
 const createReview = async (req, res) => {
     try {
@@ -79,13 +50,15 @@ const addReview = async (req, res) => {
 
 
 
+
+
+
 const seedMovies = async (req, res) => {
     try {
         const clearMovies = await models.Movie.deleteMany()
         console.log(clearMovies)
         const seededData = await models.Movie.create(moviesDB)
         res.send('Database sedded')
-        // console.log(seededData)
     } catch (err) {
         res.send('Error here')
         console.log(err)
@@ -125,7 +98,6 @@ const deleteAMovie = async (req,res) => {
 module.exports = {
     getAllMovies,
     getOneMovie,
-    createMovie,
     editAReview,
     // deleteAReview,
     addNewMovie,
