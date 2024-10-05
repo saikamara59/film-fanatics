@@ -8,13 +8,43 @@
   <body>
     <h1>Movie Reviewer Page</h1>
     <section>
-      <h2>Movie Name:<%= movie.name %></h2>
+      <h2>Movie Name:<%= movie.movieName %></h2>
+      <h2>Genre:<%= movie.genre %></h2>
+      <h2>Description: <%= movie.description %></h2>
+      <h2>Movie Poster:<img src="<%= movie.coverPhotoUrl %>" alt="" /></h2>
       <% if (movie.stillinTheaters) { %>
       <p>This movie is still in theaters</p>
       <% } else { %>
       <p>This movie is no longer in theaters</p>
       <% } %>
+      <h2>Reviews</h2>
+      <% movie.userReviews.forEach(review => { %>
+      <hr />
+      <p><%=review.reviews %></p>
+      <p>written by: <%=review.userName%></p>
+      <hr />
+      <%}) %>
+
+      <hr />
+
+      <a href="/movies/<%=movie._id%>/review/new"
+        >Add a review for this movie</a
+      >
     </section>
-    <section><% if (movie.reviews)</section>
   </body>
 </html>
+<section>
+  <% movie.userReviews.forEach(userReview =>{%>
+  <ul>
+    <li><%= userReview.reviews %></li>
+    <li><%= userReview.userName %></li>
+  </ul>
+  <%})%>
+</section>
+
+<form method="POST" action="/movies/<%=movie._id%>?_method=DELETE">
+  <button type="submit">Delete Movie</button>
+</form>
+<a href="/movies/<%=movie._id%>/edit">
+  <button type="submit">Edit Movie</button>
+</a>

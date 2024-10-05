@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Edit Page</title>
+  </head>
+  <body>
+    <%- include("../partials/nav") %>
+    <h1>Movie Name - <%= movie.name %></h1>
+    <form method="POST" action="/movies/<%=movie._id%>?_method=PUT">
+      <div>
+        <label for="movieName">Movie Name:</label>
+        <input
+          type="text"
+          name="movieName"
+          id="movieName"
+          value="<%= movie.movieName %>"
+        />
+      </div>
+      <div>
+        <label for="releaseYear">Release Year:</label>
+        <input
+          type="text"
+          name="releaseYear"
+          id="releaseYear"
+          value="<%= movie.releaseYear %>"
+        />
+      </div>
+      <div>
+        <label for="genre">Genre:</label>
+        <input type="text" name="genre" id="genre" value="<%= movie.genre %>" />
+      </div>
+      <div>
+        <label for="director">Director:</label>
+        <input
+          type="text"
+          name="director"
+          id="director"
+          value="<%= movie.director %>"
+        />
+      </div>
+      <div>
+        <label for="stillinTheaters">Still in Theaters:</label>
+        <input
+          type="text"
+          name="stillinTheaters"
+          id="stillinTheaters"
+          value="<%= movie.stillinTheaters %>"
+        />
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          value="<%= movie.description %>"
+        />
+      </div>
+      <div>
+        <label for="coverPhotoUrl">coverPhotoUrl:</label>
+        <input
+          type="text"
+          name="coverPhotoUrl"
+          id="coverPhotoUrl"
+          value="<%= movie.coverPhotoUrl %>"
+        />
+      </div>
+
+      <button type="submit">Edit Movie</button>
+    </form>
+  </body>
+</html>
