@@ -100,7 +100,7 @@ module.exports = {
     getOneMovie,
     editAReview,
     // deleteAReview,
-    addNewMovie,
+    // addNewMovie,
     seedMovies,
     createReview,
     addReview,
