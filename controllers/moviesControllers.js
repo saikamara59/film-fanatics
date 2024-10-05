@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const models = require("../models/movies");
 const moviesDB = require('../DB/moviesDB')
 
@@ -17,9 +17,11 @@ const getAllMovies = async (req,res) => {
 const getOneMovie = async (req,res) => {
     try {
         const foundMovie = await models.Movie.findById(req.params.id);
+        console.log('test a movie')
+        console.log(foundMovie)
         res.render(`movies/show`, { movie: foundMovie })
-
-    }catch (err) {
+       
+    } catch (err) {
         console.log(err);
         res.redirect("/");
     }
@@ -58,8 +60,9 @@ const createMovie = async (req, res) => {
 
 const createReview = async (req, res) => {
     try {
-        // const movie = await models.Movie.findById(req.params.id)
-        // movie.userReviews.push(req.body)
+        const movie = await models.Movie.findById(req.params.id)
+        movie.userReviews.push(req.body)
+        await movie.save()
         res.redirect(`/`);
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -68,11 +71,12 @@ const createReview = async (req, res) => {
 
 const addReview = async (req, res) => {
     const movie = await models.Movie.findById(req.params.id)
-    movie.userReviews.push(req.body)
+    // movie.userReviews.push(req.body)
     
     console.log(movie.userReviews)
-    res.render('movies/review')
+    res.render('movies/review',{movie})
 }
+
 
 
 const seedMovies = async (req, res) => {
@@ -99,15 +103,20 @@ const editAReview = async (req,res) => {
 }
 
 
-const deleteAReview = async (req,res) => {
-    try{
-        await models.UserReview.findByIdAndDelete(req.params.id);
-        console.log(deletedReviews,"response from db after deleting")
-        res.redirect("/movies");
-    } catch (err) {
-        console.log(err);
-        res.redirect(`/`)
-    }
+// const deleteAReview = async (req,res) => {
+//     try{
+//         await models.UserReview.findByIdAndDelete(req.params.id);
+//         console.log(deletedReviews,"response from db after deleting")
+//         res.redirect("/movies");
+//     } catch (err) {
+//         console.log(err);
+//         res.redirect(`/movies/${req.params.id}`);
+//     }
+// }
+
+const deleteAMovie = async (req,res) => {
+    await models.Movie.findByIdAndDelete(req.params.id)
+    res.redirect("/")
 }
 
 
@@ -118,9 +127,10 @@ module.exports = {
     getOneMovie,
     createMovie,
     editAReview,
-    deleteAReview,
+    // deleteAReview,
     addNewMovie,
     seedMovies,
     createReview,
-    addReview
+    addReview,
+    deleteAMovie
 }

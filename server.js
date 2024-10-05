@@ -47,9 +47,9 @@ app.get('/movies/seed', movieController.seedMovies)
 
 app.get("/movies/:id", movieController.getOneMovie)
 
-app.get("/movies/review/:id", movieController.addReview)
+app.get("/movies/:id/review/new", movieController.addReview)
 
-app.post("/movies/review", movieController.createReview)
+app.post("/movies/:id/review", movieController.createReview)
 
 app.post("/movies",movieController.createMovie)
 
@@ -58,8 +58,9 @@ app.put("movies/:id",movieController.editAReview);
 app.post("/movies", movieController.createMovie)
 
 
-app.delete("movies/:id",movieController.deleteAReview)
+// app.delete("movies/:id/review/:reviewId",movieController.deleteAReview)
 
+app.delete("/movies/:id",movieController.deleteAMovie)
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

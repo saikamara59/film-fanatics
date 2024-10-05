@@ -7,25 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="public/main.css" />
   </head>
-  <body class="bg-red-300 min-h-screen">
-    <%- include('../partials/nav') %>
-    <h1 class="text-center text-4xl underline">Welcome to Film Fanatics</h1>
-    <hr />
-    <% movies.forEach(movie => { %>
-    <h2 class="text-black animate-pulse p-2"><%=movie.movieName%></h2>
-    <img
-      class="flex-auto w-65 h-65 md:h-48 lg:h-50 object cover"
-      src="<%=movie.coverPhotoUrl%>"
-      alt=""
-    />
-    <p class="p-2 text-purple-600">Release Year: <%=movie.releaseYear%></p>
-    <p class="text-purple-600 p-2">Director: <%=movie.director%></p>
-    <p class="text-purple-600 p-2">Genre: <%=movie.genre%></p>
-    <p class="text-purple-600 font-serif p-2">
-      Description: <%=movie.description%>
-    </p>
-    <a href="/movies/<%= movie._id%>">See more</a>
-    <hr />
-    <%})%>
+  <body>
+    <div class="bg-red-200 bg-auto min-h-screen justify-center">
+      <%- include('../partials/nav') %>
+      <h1 class="text-center text-4xl underline">Film Fanatics</h1>
+      <hr />
+      <% movies.forEach(movie => { %>
+      <h2 class="text-black animate-pulse p-3 text-2xl">
+        <%=movie.movieName%>
+      </h2>
+      <img
+        class="w-65 h-65 md:h-48 lg:h-50 object cover flex-wrap"
+        src="<%=movie.coverPhotoUrl%>"
+        alt=""
+      />
+      <p class="p-2 text-purple-600">Release Year: <%=movie.releaseYear%></p>
+      <p class="text-purple-600 p-2">Director: <%=movie.director%></p>
+      <p class="text-purple-600 p-2">Genre: <%=movie.genre%></p>
+      <p class="text-purple-600 font-serif p-2 font-medium">
+        Description: <%=movie.description%>
+      </p>
+      <a href="/movies/<%= movie._id%>">See more</a>
+      <hr />
+      <%})%>
+    </div>
   </body>
 </html>
