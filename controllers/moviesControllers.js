@@ -28,6 +28,20 @@ const getOneMovie = async (req,res) => {
 }
 
 
+const createMovie = async (req, res) => {
+    
+    req.body.stillInTheaters = req.body.stillInTheaters ? true : false;
+  
+    try {
+      
+      await models.Movie.create(req.body);
+      res.redirect("/");
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  };
+  
+
 
 const createReview = async (req, res) => {
     try {
@@ -49,8 +63,14 @@ const addReview = async (req, res) => {
 }
 
 
+const createForm= async (req,res)=>{
+res.render("movies/newmovie")
+}
 
-
+const editForm = async (req,res) => {
+    const editedMovie = await models.Movie.findById(req.params.id)
+    res.render("movies/edit",{movie:editedMovie})
+}
 
 
 const seedMovies = async (req, res) => {
@@ -93,6 +113,21 @@ const deleteAMovie = async (req,res) => {
 }
 
 
+const editMovie = async (req,res) => {
+    try {
+        console.log(req.body,"testing data from form")
+        if (req.body.stillInTheaters=== "on") {
+            req.body.stillInTheaters = true;
+    } else {
+        req.body.stillInTheaters = false;
+    }
+    await models.Movie.findByIdAndUpdate(req.params.id,req.body)
+    res.direct(`/movies/${req.params.id}`);
+} catch (err) {
+    console.log(err);
+    res.redirect(`/movies/${req.params.id}`);
+}
+};
 
 
 module.exports = {
@@ -100,9 +135,12 @@ module.exports = {
     getOneMovie,
     editAReview,
     // deleteAReview,
-    // addNewMovie,
+    createMovie,
     seedMovies,
     createReview,
     addReview,
-    deleteAMovie
+    deleteAMovie,
+    editMovie,
+    createForm,
+    editForm
 }
