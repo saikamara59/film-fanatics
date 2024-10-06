@@ -41,22 +41,29 @@ const Movie = require("./models/movies")
 // Routes
 app.get('/', movieController.getAllMovies)  
 
+app.get('/movies/new', movieController.createForm)
+
+app.get("/movies/:id/edit",movieController.editForm)
 
 app.get('/movies/seed', movieController.seedMovies)
 
 app.get("/movies/:id", movieController.getOneMovie)
 
-app.get("/movies/review/:id", movieController.addReview)
+app.get("/movies/:id/review/new", movieController.addReview)
 
-app.post("/movies/review/:id", movieController.createReview)
+app.post("/movies/:id/review", movieController.createReview)
+
+app.post("/movies",movieController.createMovie)
+
+// app.put("movies/:id",movieController.editAReview);
+
+app.put("/movies/:id",movieController.editMovie)
+// app.post("/movies", movieController.createMovie)
 
 
-app.put("movies/:id",movieController.editAReview);
+// app.delete("movies/:id/review/:reviewId",movieController.deleteAReview)
 
-
-
-app.delete("movies/:id",movieController.deleteAReview)
-
+app.delete("/movies/:id",movieController.deleteAMovie)
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

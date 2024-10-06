@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <form action="/movies/review/<%=movieId%>" method="POST">
-        <div>
-            <label for="userName">User Name: </label>
-            <input type="text" name="userName" id="userName" required />
-        </div>
+  </head>
+  <body>
+    <form action="/movies/<%= movie._id %>/review" method="POST">
+      <div>
+        <label for="userName">User Name: </label>
+        <input type="text" name="userName" id="userName" required />
+      </div>
 
-        <div>
-            <label for="reviews">Review: </label>
-            <textarea id="reviews" name="reviews" maxlength="1500" required></textarea>
-        </div>
+      <div>
+        <label for="reviews">Review: </label>
+        <textarea
+          id="reviews"
+          name="reviews"
+          maxlength="1500"
+          required
+        ></textarea>
+      </div>
 
-        <button type="submit">SUBMIT</button>
-</form>
-</body>
+      <button type="submit">SUBMIT</button>
+    </form>
+  </body>
 </html>
