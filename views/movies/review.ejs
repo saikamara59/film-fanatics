@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <%- include('../partials/nav') %>
     <form action="/movies/<%= movie._id %>/review" method="POST">
       <div>
         <label for="userName">User Name: </label>
