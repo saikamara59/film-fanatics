@@ -15,15 +15,11 @@ app.set("view engine", "ejs");
 
 const PORT = process.env.PORT || 4000 
 
-// middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); 
 app.use(morgan("dev")); 
 app.use(express.static(path.join(__dirname, "public")));
   
-
-// mongoose connection 
-
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
@@ -34,11 +30,8 @@ mongoose.connection.on("error", (err) => {
   console.log(err); 
 });
 
-
 const Movie = require("./models/movies")
 
-
-// Routes
 app.get('/', movieController.getAllMovies)  
 
 app.get('/movies/new', movieController.createForm)
@@ -55,13 +48,7 @@ app.post("/movies/:id/review", movieController.createReview)
 
 app.post("/movies",movieController.createMovie)
 
-// app.put("movies/:id",movieController.editAReview);
-
 app.put("/movies/:id",movieController.editMovie)
-// app.post("/movies", movieController.createMovie)
-
-
-// app.delete("movies/:id/review/:reviewId",movieController.deleteAReview)
 
 app.delete("/movies/:id",movieController.deleteAMovie)
 
