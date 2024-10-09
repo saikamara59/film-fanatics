@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="public/main.css" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <!-- LU -> create an ejs partial to populate a nav instead of a header -->
+    <h1>Welcome to the app!</h1>
+
+    <% if (user) { %>
+    <p>Welcome back, <%= user.username %>!</p>
+    <p>Check out your <a href="/user-profile">profile page</a>.</p>
+    <% } else { %>
+    <p>Welcome guest!</p>
+    <p>
+      <a href="/auth/sign-in">Sign in</a> or
+      <a href="/auth/sign-up">Sign up</a> to get started.
+    </p>
+    <% } %>
+  </body>
+</html>
