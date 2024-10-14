@@ -52,7 +52,7 @@ app.use("/auth", authController);
 
 const Movie = require("./models/movies")
 
-app.get('/', movieController.getAllMovies)  
+app.get('/movies', movieController.getAllMovies)  
 
 app.get('/movies/new', movieController.createForm)
 
