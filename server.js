@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const dotenv = require("dotenv")
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -7,6 +8,8 @@ const path = require('path');
 const movieController = require("./controllers/moviesControllers");
 const authController= require("./controllers/auth")
 const session = require("express-session")
+const passport = require('passport');
+
 
 dotenv.config();
 const app = express();
@@ -20,20 +23,24 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => { 
 });
 
-const PORT = process.env.PORT || 4000 
+const PORT = process.env.PORT || 3000 
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); 
 app.use(morgan("dev")); 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  session({
-     secret: process.env.SESSION_SECRET,
-    resave:false,
-    saveUnitialized: true,
-  })
-)
+app.use(cookieParser());
 
+// new code below
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use((req, res, next) => {
   if (req.session.user) {
     //check if a session user object is defined (created after login)
@@ -47,7 +54,17 @@ app.use((req, res, next) => {
   // exits the current function and passes the (updated) request to the next set of routes
 });
 
+// Add this middleware BELOW passport middleware
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+// require('./config/database');  // Assuming this connects to your database
+require('./config/passport');  // Passport configuration file
+
 app.use("/auth", authController);
+
   
 
 const Movie = require("./models/movies")

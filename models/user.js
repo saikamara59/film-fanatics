@@ -1,27 +1,18 @@
-const mongoose = require("mongoose");
 
-// define schema
-const userSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      // LU - explore string validators to make sure the string is > 2/3 chars
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    // LU -> TO STORE: favoritesMovies 
-        // 1. create favoriteMovies Schema
-        // 2. add a field to the userSchema -> favorites: [ favoriteMoviesSchema ]
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  name: String,
+  googleId: {
+    type: String,
+    required: true
   },
-  {
-    timestamps: true,
-  }
-);
-// register the model in DB
-const User = mongoose.model("User", userSchema);
+  email: String,
+  avatar: String
+}, {
+  timestamps: true
+});
 
-// export the model to be used in ˝the controller
-module.exports = User;
+
+module.exports = mongoose.model('User', userSchema);
