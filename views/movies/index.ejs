@@ -2,41 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=k, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Film Fanatics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="public/main.css" />
   </head>
-  <body class="text-center bg-teal-200  ">
+  <body class="text-center bg-teal-200">
     <%- include('../partials/nav') %>
     <h1 class="text-3xl font-bold m-3">FILM FANATICS</h1>
     <hr />
-    <div class=" grid grid-cols-4  p-3  ">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-3"
+    >
       <% movies.forEach(movie => { %>
-      <div class="
-      w-80 grid p-5 mb-7  bg-white
-      font-semibold border-2 bg-green-300
-      rounded-xl">
-        
-          <h2 class="text-2xl font-semibold" >
-            <%=movie.movieName%>
-          </h2>
-          <img 
-            width="500px"
-            class="rounded-xl"
-            src="<%=movie.coverPhotoUrl%>"
-            alt=""
-          />
-          <p class="text-sm">Release Year: <%=movie.releaseYear%></p>
-          <p class="text-sm">Director: <%=movie.director%></p>
-          <p class="text-sm">Genre: <%=movie.genre%></p>
-          <p class="text-sm">
-            Description: <%=movie.description%>
-          </p>
-          <a class="underline " href="/movies/<%= movie._id%>">See more</a>
-          <hr />
-        </div>
-      <%})%>
+      <div
+        class="w-full max-w-sm mx-auto bg-white font-semibold border-2 bg-green-300 rounded-xl p-4 mb-6"
+      >
+        <h2 class="text-xl md:text-2xl font-semibold mb-2">
+          <%= movie.movieName %>
+        </h2>
+        <img
+          class="w-full h-auto rounded-xl mb-3"
+          src="<%= movie.coverPhotoUrl %>"
+          alt="<%= movie.movieName %>"
+        />
+        <p class="text-sm md:text-base">
+          Release Year: <%= movie.releaseYear %>
+        </p>
+        <p class="text-sm md:text-base">Director: <%= movie.director %></p>
+        <p class="text-sm md:text-base">Genre: <%= movie.genre %></p>
+        <p class="text-sm md:text-base mb-3">
+          Description: <%= movie.description %>
+        </p>
+        <a class="text-blue-600 underline" href="/movies/<%= movie._id %>"
+          >See more</a
+        >
+        <hr class="my-3" />
+      </div>
+      <% }) %>
     </div>
   </body>
 </html>

@@ -3,26 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Submit a Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <form action="/movies" method="POST">
-      <div>
-        <label for="coverPhotoUrl">Cover Photo Url</label>
-        <input type="text" name="coverPhotoUrl" id="coverPhotoUrl" />
-      </div>
-      <hr />
-      <h2>Add your review</h2>
-      <div>
-        <label for="userName">User Name: </label>
-        <input type="text" name="userName" id="userName" />
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <form
+      action="/movies"
+      method="POST"
+      class="bg-white p-6 rounded-lg shadow-md w-full max-w-lg"
+    >
+      <h1 class="text-2xl font-semibold mb-4 text-center">
+        Submit Your Review
+      </h1>
+
+      <!-- Cover Photo URL -->
+      <div class="mb-4">
+        <label for="coverPhotoUrl" class="block text-gray-700 font-medium"
+          >Cover Photo URL</label
+        >
+        <input
+          type="text"
+          name="coverPhotoUrl"
+          id="coverPhotoUrl"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          placeholder="Enter image URL"
+        />
       </div>
 
-      <div>
-        <label for="reviews"></label>
-        <textarea id="reviews" name="reviews" maxlength="1500"></textarea>
+      <hr class="my-4" />
+
+      <h2 class="text-xl font-semibold mb-3">Add Your Review</h2>
+
+      <!-- User Name -->
+      <div class="mb-4">
+        <label for="userName" class="block text-gray-700 font-medium"
+          >User Name</label
+        >
+        <input
+          type="text"
+          name="userName"
+          id="userName"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          placeholder="Enter your name"
+        />
       </div>
-      <button type="submit">SUBMIT</button>
+
+      <!-- Review -->
+      <div class="mb-4">
+        <label for="reviews" class="block text-gray-700 font-medium"
+          >Your Review</label
+        >
+        <textarea
+          id="reviews"
+          name="reviews"
+          maxlength="1500"
+          class="w-full p-2 border border-gray-300 rounded-lg h-32 resize-none focus:outline-none focus:ring-2 focus:ring-teal-500"
+          placeholder="Write your review..."
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700 transition duration-300"
+      >
+        SUBMIT
+      </button>
     </form>
   </body>
 </html>
