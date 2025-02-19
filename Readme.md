@@ -1,5 +1,9 @@
 ![Film Fanatics Logo](/public/images/logo.png)
 
+
+![Screenshot 2025-02-19 111406](https://github.com/user-attachments/assets/7509f44e-20ae-431d-9869-f87ea26c4a25)
+
+
 ![Screenshot 2024-09-30 195115](https://github.com/user-attachments/assets/8d258b17-28b7-4bff-a415-f56659afe3ff)
 
 # FilmFanatics - a platform where users can rate and write reviews for movies.
