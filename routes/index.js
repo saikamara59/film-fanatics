@@ -18,7 +18,7 @@ router.get('/auth/google', passport.authenticate(
     'google',
     {
       successRedirect: '/movies',
-      failureRedirect: '/movies'
+      failureRedirect: '/auth/sign-in'
     }
   ));
 

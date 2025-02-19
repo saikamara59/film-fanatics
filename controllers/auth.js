@@ -9,69 +9,79 @@ router.get("/sign-up", (req, res) => {
   res.render("auth/sign-up.ejs");
 });
 
+// Sign in route
 router.get("/sign-in", (req, res) => {
-  res.render("auth/sign-in.ejs");
+  res.render("auth/sign-in.ejs", { error: req.query.error });
 });
 
+// Handle sign-up
 router.post("/sign-up", async (req, res) => {
-  
-  const userInDatabase = await User.findOne({ username: req.body.username });
-  if (userInDatabase) {
-    return res.send("Username already taken.");
-  }
+  try {
+    const userInDatabase = await User.findOne({ username: req.body.username });
+    if (userInDatabase) {
+      return res.status(400).send("Username already taken.");
+    }
 
-  
-  if (req.body.password !== req.body.confirmPassword) {
-    return res.send("Password and Confirm Password must match!");
-  }
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.status(400).send("Password and Confirm Password must match!");
+    }
 
-  
-  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-  req.body.password = hashedPassword;
-  const user = await User.create(req.body);
-  res.send("User created: " + user.username);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    req.body.password = hashedPassword;
+    const user = await User.create(req.body);
+
+    res.redirect("/auth/sign-in");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error creating user.");
+  }
 });
 
-
+// Handle sign-in
 router.post("/sign-in", async (req, res) => {
-  const userInDatabase = await User.findOne({ username: req.body.username });
+  try {
+    const userInDatabase = await User.findOne({ username: req.body.username });
 
-  if (!userInDatabase) {
-    return res.send("Login Failed...");
+    if (!userInDatabase) {
+      return res.status(401).send("Invalid username or password.");
+    }
+
+    const validPassword = await bcrypt.compare(req.body.password, userInDatabase.password);
+    if (!validPassword) {
+      return res.status(401).send("Invalid username or password.");
+    }
+
+    req.session.user = {
+      username: userInDatabase.username,
+      _id: userInDatabase._id,
+    };
+
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error logging in.");
   }
-
-  const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password);
-  if (!validPassword) {
-    return res.send("Login Failed...");
-  }
-
-  // Persist authentication status
-  req.session.user = {
-    username: userInDatabase.username,
-    _id: userInDatabase._id,
-  };
-
-  res.redirect("/"); // Redirect after successful login
 });
 
-
+// Google OAuth login
 router.get('/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
+// Google OAuth callback
 router.get('/oauth2callback', passport.authenticate('google', {
   successRedirect: '/movies',
-  failureRedirect: '/auth/sign-in' // Adjust as needed
+  failureRedirect: '/auth/sign-in',
 }));
 
-
+// Handle sign-out
 router.get("/sign-out", async (req, res) => {
   await req.session.destroy();
-  res.redirect("/"); // Redirect after logout
+  res.redirect("/movies");
 });
 
-
-router.get("/test", (req, res) => res.send("hitting auth test"));
-
+// Test route
+router.get("/test", (req, res) => res.send("Hitting auth test"));
 
 module.exports = router;
+

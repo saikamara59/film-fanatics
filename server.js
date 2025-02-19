@@ -1,110 +1,107 @@
 const express = require("express");
 const cookieParser = require('cookie-parser');
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require('path');
-const movieController = require("./controllers/moviesControllers");
-const authController= require("./controllers/auth")
-const session = require("express-session")
+const session = require("express-session");
 const passport = require('passport');
 
+// Controllers
+const movieController = require("./controllers/moviesControllers");
+const authController = require("./controllers/auth");
 
+// Models
+const Movie = require("./models/movies");
+
+// Load environment variables
 dotenv.config();
+
+// Initialize Express app
 const app = express();
 app.set("view engine", "ejs");
-  
-mongoose.connect(process.env.MONGODB_URI);
+
+// Database connection
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on("connected", () => {
+  console.log("Connected to MongoDB");
 });
 
-mongoose.connection.on("error", (err) => { 
+mongoose.connection.on("error", (err) => {
+  console.error("MongoDB connection error:", err);
 });
 
-const PORT = process.env.PORT || 3000 
+// App port
+const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method")); 
-app.use(morgan("dev")); 
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
-// new code below
+// Session configuration
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
 }));
 
-
+// Passport initialization
+// require('./config/passport'); // Load Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Set `res.locals.user` for all views
 app.use((req, res, next) => {
-  if (req.session.user) {
-    //check if a session user object is defined (created after login)
-    res.locals.user = req.session.user;
-    // it if does, update all res object's context with that user data.
-    // this allows you to access user data to be available without having to set the context for each route
-  }else {
-    res.locals.user = null
-  }
-  next();
-  // exits the current function and passes the (updated) request to the next set of routes
-});
-
-// Add this middleware BELOW passport middleware
-app.use(function (req, res, next) {
-  res.locals.user = req.user;
+  res.locals.user = req.session.user || null; // Default to null if no user is logged in
   next();
 });
 
-// require('./config/database');  // Assuming this connects to your database
-require('./config/passport');  // Passport configuration file
-
+// Routes
 app.use("/auth", authController);
 
-  
+// Movie routes
+app.get('/movies', movieController.getAllMovies);
+app.get('/movies/new', movieController.createForm);
+app.get("/movies/:id/edit", movieController.editForm);
+app.get('/movies/seed', movieController.seedMovies);
+app.get("/movies/:id", movieController.getOneMovie);
+app.get("/movies/:id/review/new", movieController.addReview);
 
-const Movie = require("./models/movies")
+app.post("/movies/:id/review", movieController.createReview);
+app.post("/movies", movieController.createMovie);
 
-app.get('/movies', movieController.getAllMovies)  
+app.put("/movies/:id", movieController.editMovie);
+app.delete("/movies/:id", movieController.deleteAMovie);
 
-app.get('/movies/new', movieController.createForm)
-
-app.get("/movies/:id/edit",movieController.editForm)
-
-app.get('/movies/seed', movieController.seedMovies)
-
-app.get("/movies/:id", movieController.getOneMovie)
-
-app.get("/movies/:id/review/new", movieController.addReview)
-
-app.get('/user-profile',(req,res)=>{
-  if(req.session.user){
-    res.render('profile/private.ejs')
+// User profile route
+app.get('/user-profile', (req, res) => {
+  if (req.session.user) {
+    res.render('profile/private.ejs');
   } else {
-    res.send('Sorry, no guests allowed')
+    res.status(403).send('Sorry, no guests allowed');
   }
-})
-
-app.get("/", (req, res) => {
-  // res.render -> generates new HTML from a template file
-  res.render("home.ejs", { user: req.session.user }); // locate a file in views -> <filename> -> create a copy of the template
 });
 
-app.post("/movies/:id/review", movieController.createReview)
+// Home route
+app.get("/", (req, res) => {
+  res.render("home.ejs", { user: req.session.user });
+});
 
-app.post("/movies",movieController.createMovie)
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
 
-app.put("/movies/:id",movieController.editMovie)
-
-app.delete("/movies/:id",movieController.deleteAMovie)
-
+// Start server
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-})
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 
  
 
