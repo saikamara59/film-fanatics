@@ -6,13 +6,18 @@
 
 ![Screenshot 2024-09-30 195115](https://github.com/user-attachments/assets/8d258b17-28b7-4bff-a415-f56659afe3ff)
 
+
 # FilmFanatics - a platform where users can rate and write reviews for movies.
+
 
 ## About - Description:
 
+
 Film Fanatics is a full-stack web application where movie enthusiasts can browse movies, read and post reviews, and interact with the community by adding thier favorite movies, edit and delete them how ever they would like.
 
+
 ## Getting started: (deployment link) [[https://filmfanatics-a79d7b35aad5.herokuapp.com/]](https://filmfanatics-0dc6d7417d2d.herokuapp.com/)
+
 
 ## Features
 
@@ -39,6 +44,7 @@ Film Fanatics is a full-stack web application where movie enthusiasts can browse
 8. CSS
 9. Heroku
 10. Tailwind Css
+
 
 ## Next steps: Planned future enhancements (stretch goals):
 
